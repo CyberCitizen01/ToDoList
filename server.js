@@ -3,18 +3,18 @@ const bodyParser = require("body-parser")
 
 const app = express();
 
-app.use(express.static("public"));
+//app.use(express.static("public"));
 
 let port = 3000;
 
+app.set("view engine", "ejs");
+
+app.use(bodyParser.urlencoded({ extended: true}));
+
+app.use('/assets', express.static('assets'));
+
 app.get("/",function(req,res){
-
-    //res.send("<h1><font>Welcome</font></h1>")
-    res.sendFile("index.html");
-});
-
-app.get("/about",function(req,res){
-    //res.send("<h1>Hello this is the about page</h1>")
+    res.render("home");
 });
 
 app.listen(port,function(){
